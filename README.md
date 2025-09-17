@@ -1,6 +1,6 @@
-# demo-project
+# apa-site-choice-prediction
 
-A brief description of the project. Explain what it does and who it's for.
+Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
