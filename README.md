@@ -1,11 +1,18 @@
+<<<<<<< HEAD
 # apa-site-choice-prediction
 
 Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
+=======
+# demo-project
+
+A brief description of the project. Explain what it does and who it's for.
+>>>>>>> 66fa38a (Add starter files: README, LICENSE, contributing guide, and code of conduct)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## Abstract
 
+<<<<<<< HEAD
 Our project aims to train the [`DNABERT-2-117M`](https://huggingface.co/zhihan1996/DNABERT-2-117M) machine learning model to predict where and which polyadenylation site a gene will use, based on features derived from the RNA sequence. By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice.
 
 We will train and test the model using publicly available datasets from **PolyASite 2.0** and **PolyA_DB**, which provide experimentally validated catalogs of polyadenylation sites, and **GENCODE**, which supplies comprehensive gene annotations. Together, these resources give us a high-confidence, genome-wide reference of polyadenylation sites and their transcript contexts. The model’s output will include predictions and further visualizing aids are included.
@@ -87,6 +94,67 @@ Follow apa_site_choice_prediction_quickstart.md within this repository.
 
 *Standard library* (no install needed): `re`, `typing`, `math`, `os`, `sys`, `random`, `hashlib`, `collections`, `gzip`  
 *Included with torch*: `torch.utils.data` (`Dataset`, `DataLoader`)
+=======
+A concise summary of the project's goals, the problem it addresses, and its intended audience. This section can include potential use cases and key features.
+
+## Installation
+
+Provide instructions on how to install and set up the project, such as installing dependencies and preparing the environment.
+
+```bash
+# Example command to install dependencies (Python)
+pip install project-dependencies
+
+# Example command to install dependencies (R)
+install.packages("project-dependencies")
+```
+
+## Quick Start
+
+Provide a basic usage example or minimal code snippet that demonstrates how to use the project.
+
+```python
+# Example usage (Python)
+import my_project
+
+demo = my_project.example_function()
+print(demo)
+```
+```r
+# Example usage (R)
+library(my_project)
+
+demo <- example_function()
+print(demo)
+```
+
+## Usage
+
+Add detailed information and examples on how to use the project, covering its major features and functions.
+
+```python
+# More usage examples (Python)
+import my_project
+
+demo = my_project.advanced_function(parameter1='value1')
+print(demo)
+```
+```r
+# More usage examples (R)
+library(demoProject)
+
+demo <- advanced_function(parameter1 = "value1")
+print(demo)
+```
+
+## Contribute
+
+Contributions are welcome! If you'd like to contribute, please open an issue or submit a pull request. See the [contribution guidelines](CONTRIBUTING.md) for more information.
+
+## Support
+
+If you have any issues or need help, please open an [issue](https://github.com/hackbio-ca/demo-project/issues) or contact the project maintainers.
+>>>>>>> 66fa38a (Add starter files: README, LICENSE, contributing guide, and code of conduct)
 
 ## License
 
