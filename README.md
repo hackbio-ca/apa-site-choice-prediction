@@ -3,7 +3,7 @@
 Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-test test 
+
 ## Abstract
 
 Messenger RNA (mRNA) molecules are made from DNA and serve as the instructions for building proteins. At the end of most mRNAs is a poly(A) tail: a stretch of adenines that protects the RNA and helps it function. Genes can use different polyadenylation sites to produce mRNAs with different tail lengths, a process called Alternative Polyadenylation (APA). APA changes can alter RNA stability, localization, and translation, and are often linked to diseases such as cancer.
