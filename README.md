@@ -1,4 +1,4 @@
-# apa-site-choice-prediction
+a# apa-site-choice-prediction
 
 Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
@@ -6,65 +6,13 @@ Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
 ## Abstract
 
-A concise summary of the project's goals, the problem it addresses, and its intended audience. This section can include potential use cases and key features.
+Messenger RNA (mRNA) molecules are made from DNA and serve as the instructions for building proteins. At the end of most mRNAs is a poly(A) tail: a stretch of adenines that protects the RNA and helps it function. Genes can use different polyadenylation sites to produce mRNAs with different tail lengths, a process called Alternative Polyadenylation (APA). APA changes can alter RNA stability, localization, and translation, and are often linked to diseases such as cancer.
 
-## Installation
+Our project aims to build an interpretable machine learning model to predict which polyadenylation site a gene will use, based on features derived from the RNA sequence. By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice.
 
-Provide instructions on how to install and set up the project, such as installing dependencies and preparing the environment.
+We will train and test our model using publicly available datasets from PolyASite 2.0, a curated atlas of experimentally validated polyadenylation sites, and GENCODE, which provides high-quality gene annotations. These datasets include APA information for human and mouse, covering multiple tissues and experimental conditions. The output will include both predictions and explanations (via SHAP plots) showing which features were most important.
 
-```bash
-# Example command to install dependencies (Python)
-pip install project-dependencies
-
-# Example command to install dependencies (R)
-install.packages("project-dependencies")
-```
-
-## Quick Start
-
-Provide a basic usage example or minimal code snippet that demonstrates how to use the project.
-
-```python
-# Example usage (Python)
-import my_project
-
-demo = my_project.example_function()
-print(demo)
-```
-```r
-# Example usage (R)
-library(my_project)
-
-demo <- example_function()
-print(demo)
-```
-
-## Usage
-
-Add detailed information and examples on how to use the project, covering its major features and functions.
-
-```python
-# More usage examples (Python)
-import my_project
-
-demo = my_project.advanced_function(parameter1='value1')
-print(demo)
-```
-```r
-# More usage examples (R)
-library(demoProject)
-
-demo <- advanced_function(parameter1 = "value1")
-print(demo)
-```
-
-## Contribute
-
-Contributions are welcome! If you'd like to contribute, please open an issue or submit a pull request. See the [contribution guidelines](CONTRIBUTING.md) for more information.
-
-## Support
-
-If you have any issues or need help, please open an [issue](https://github.com/hackbio-ca/demo-project/issues) or contact the project maintainers.
+This tool could help researchers understand APA regulation and potentially detect disease- associated changes in RNA processing.
 
 ## License
 
