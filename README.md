@@ -1,4 +1,4 @@
-a# apa-site-choice-prediction
+# apa-site-choice-prediction
 
 Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
