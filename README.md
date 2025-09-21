@@ -6,9 +6,9 @@ Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
 ## Abstract
 
-Our project aims to train the `zhihan1996/DNABERT-2-117M` machine learning model to predict where and which polyadenylation site a gene will use, based on features derived from the RNA sequence. By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice.
+Our project aims to train the [`DNABERT-2-117M`](https://huggingface.co/zhihan1996/DNABERT-2-117M) machine learning model to predict where and which polyadenylation site a gene will use, based on features derived from the RNA sequence. By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice.
 
-We will train and test the model using publicly available datasets from **PolyASite 2.0** and **PolyA_DB**, which provide experimentally validated catalogs of polyadenylation sites, and **GENCODE**, which supplies comprehensive gene annotations. Together, these resources give us a high-confidence, genome-wide reference of polyadenylation sites and their transcript contexts. _The model’s output will include both predictions and explanations showing which sequence features were most important for site choice._ ** check what outputs are included, and modify based off of that (placeholder)
+We will train and test the model using publicly available datasets from PolyA Site 2.0 and PolyA_DB, curated atlases of experimentally validated polyadenylation sites, and GENCODE, which provides high-quality gene annotations. These datasets include APA information for human and mouse, covering multiple tissues and experimental conditions. The output will include both predictions and explanations (via SHAP plots) showing which features were most important.
 
 This tool could help researchers understand APA regulation and potentially detect disease-associated changes in RNA processing.
 
@@ -24,7 +24,7 @@ Messenger RNA (mRNA) molecules are made from DNA and serve as the instructions f
 
 Tasks were delegated to members as follows: 
 1. Raw data processing 
-    - Figure out how to compile data from PolyASite 2.0, PolyA_DB, and GENCODE into one `.csv` file
+    - Figure out how to compile data from PolyA Site 2.0, PolyA_DB, and GENCODE into one `.csv` file
     - Determine how to format the `.csv` file depending on what columns of data are important and relevant  
 2. Neural network research 
     - Research CNN vs. transformers and decide what would be more suitable for our project
@@ -35,7 +35,7 @@ Tasks were delegated to members as follows:
     - Learn how to plot cool graphs (ex. heat maps)
     - Create visualizations of chosen machine learning model 
 
-Tasks were completed, and the decided ml model was the transformer-based genome foundation model `zhihan1996/DNABERT-2-117M`. 
+Tasks were completed, and the decided ml model was the transformer-based genome foundation model `DNABERT-2-117M`. 
 
 Why a transformer: Self-attention captures long-range motif interactions (AAUAAA, UGUA, U/G-rich) across tens–hundreds of bases; pretrained genomic representations and parallelism make training fast and interpretable for k-mer attributions.
 
