@@ -41,7 +41,7 @@ Why a transformer: Self-attention captures long-range motif interactions (AAUAAA
 
 Why `DNABERT-2-117M`: Genome-native k-mer tokenizer, ~117M params (hackathon-friendly), easy loading (`AutoTokenizer`/`AutoModelForSequenceClassification`), strong prior for motif-based classification, and token-level attributions map cleanly to biological k-mers.
 
-INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY
+_INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY_
 
 
 **Phase 2: Preparation for Model Training** 
@@ -51,12 +51,12 @@ INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY
 
 **Phase 3: Model Training** 
 
-INSERT WHAT BORIS DID HERE 
+_INSERT WHAT BORIS DID HERE_ 
 
 
 **Phase 4: Evaluation and Interpreting** 
 
-INSERT WHAT AKSHITA DID HERE 
+_INSERT WHAT AKSHITA DID HERE_ 
 
 
 **Phase 5: Wrapping Up** 
