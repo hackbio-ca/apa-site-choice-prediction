@@ -71,7 +71,7 @@ Used built-in functions from `transformers` and `scikit-learn` to evaluate model
 
 
 ## Installation and Dependencies 
-Follow apa_site_choice_prediction_quickstart.md within this repository.
+Follow repo_quickstart_ultra_short.md within this repository.
 
 **Required Packages**
 - Python **3.10–3.12**
