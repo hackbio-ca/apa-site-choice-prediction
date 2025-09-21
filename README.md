@@ -12,6 +12,8 @@ We will train and test our model using publicly available datasets from PolyASit
 
 This tool could help researchers understand APA regulation and potentially detect disease-associated changes in RNA processing.
 
+Submitted as part of the [Toronto Bioinformatics Hackathon 2025](https://hackbio.ca/)
+
 ## Background 
 
 Messenger RNA (mRNA) molecules are made from DNA and serve as the instructions for building proteins. At the end of most mRNAs is a poly(A) tail: a stretch of adenines that protects the RNA and helps it function. Genes can use different polyadenylation sites to produce mRNAs with different tail lengths, a process called Alternative Polyadenylation (APA). APA changes can alter RNA stability, localization, and translation, and are often linked to diseases such as cancer.
@@ -46,15 +48,15 @@ INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY
 
 `prep_rna_for_model.ipynb` was written with functions to prep raw RNA sequences for the chosen ml model. 
 
-INSERT WHAT BORIS DID HERE 
-
-INSERT WHAT AKSHITA DID HERE 
-
 
 **Phase 3: Model Training** 
 
+INSERT WHAT BORIS DID HERE 
+
 
 **Phase 4: Evaluation and Interpreting** 
+
+INSERT WHAT AKSHITA DID HERE 
 
 
 **Phase 5: Wrapping Up** 
