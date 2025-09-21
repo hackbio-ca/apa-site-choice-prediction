@@ -10,7 +10,7 @@ Our project aims to train the `zhihan1996/DNABERT-2-117M` machine learning model
 
 We will train and test our model using publicly available datasets from PolyASite 2.0 and PolyADB, curated atlases of experimentally validated polyadenylation sites, and GENCODE, which provides high-quality gene annotations. These datasets include APA information for human and mouse, covering multiple tissues and experimental conditions. The output will include both predictions and explanations (via SHAP plots) showing which features were most important.
 
-This tool could help researchers understand APA regulation and potentially detect disease- associated changes in RNA processing.
+This tool could help researchers understand APA regulation and potentially detect disease-associated changes in RNA processing.
 
 ## Background 
 
