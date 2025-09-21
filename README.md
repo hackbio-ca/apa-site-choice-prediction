@@ -73,7 +73,7 @@ _INSERT WHAT AKSHITA DID HERE_
 
 
 ## Installation and Dependencies 
-Follow QuickStart.md within this repository.
+Follow apa_site_choice_prediction_quickstart.md within this repository.
 
 **Required Packages**
 - Python **3.10–3.12**
