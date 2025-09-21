@@ -153,40 +153,17 @@ class APADataset(Dataset):
 
 def apa_collate(batch: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
-    Collate a list of APADataset items into a single batch for the model.
-      - Stacks 'input_ids' and 'attention_mask' into (B, L) tensors.
-      - Preserves 'meta' as a Python list (useful for mapping predictions back).
-      - If any item has 'labels', stacks them into shape (B,)
-    
-    Parameters
-    ----------
-    batch : List[Dict]
-        What DataLoader hands us (a list of items from APADataset.__getitem__).
-
-    Returns
-    -------
-    Dict[str, Any]
-        {
-          'input_ids'     : LongTensor[B, L],
-          'attention_mask': LongTensor[B, L],
-          'labels'        : LongTensor[B]   (only if present),
-          'meta'          : List[dict]
-        }
-
-    Example
-    -------
-    >>> seqs = ["AAAUUUGCAGUAAUGA", "ccauuuaaaGG"]
-    >>> ds = APADataset(seqs, tok, window_nt=12, stride=6, max_length=64)
-    >>> loader = DataLoader(ds, batch_size=2, shuffle=False, collate_fn=apa_collate)
-    >>> batch = next(iter(loader))
-    >>> batch["input_ids"].shape  
-    torch.Size([2, 64])
-    
+    Trainer-safe collate: returns ONLY keys the model forward() expects.
+    Drops 'meta' to avoid TypeError.
     """
-    
-    out = {"input_ids": torch.stack([b["input_ids"] for b in batch]), "attention_mask": torch.stack([b["attention_mask"] for b in batch]),
-        "meta": [b["meta"] for b in batch]}
-    if any("labels" in b for b in batch):
-        out["labels"] = torch.stack([b["labels"] for b in batch if "labels" in b])
-    return out
+    input_ids = torch.stack([b["input_ids"] for b in batch])
+    attention_mask = torch.stack([b["attention_mask"] for b in batch])
 
+    has_labels = [("labels" in b) for b in batch]
+    if any(has_labels):
+        if not all(has_labels):
+            raise ValueError("Mixed labeled/unlabeled items in the same batch.")
+        labels = torch.stack([b["labels"] for b in batch])
+        return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": labels}
+
+    return {"input_ids": input_ids, "attention_mask": attention_mask}

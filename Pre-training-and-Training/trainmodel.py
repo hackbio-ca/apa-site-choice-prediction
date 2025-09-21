@@ -1,42 +1,29 @@
 #!/usr/bin/env python3
 """
 Train DNABERT-2 to classify poly(A) sites from sequence windows.
-
-Inputs
-------
-- CSV with at least columns: 'sequence' (A/C/G/T/N string) and 'label' (0 or 1)
-  (Optionally: 'chrom' to enable chromosome-wise splitting)
-
-Dependencies
-------------
-pip install transformers accelerate torch scikit-learn pandas
-
-Usage
------
-python train_apa_dnabert2.py \
-  --csv apasites_with_negatives.csv \
-  --out-dir ./dnabert2_apa \
-  --epochs 3 --lr 2e-5 --batch-train 16 --batch-eval 32 \
-  --max-length 512 --window-nt 300 --val-frac 0.1 \
-  --chromosome-split false
 """
 
 import os
+# quiet the tokenizers fork warning
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
 import argparse
 import random
 import numpy as np
 import pandas as pd
 import torch
+from inspect import signature
 
 from sklearn.metrics import average_precision_score, roc_auc_score, accuracy_score, f1_score
 from transformers import (
+    AutoConfig,
     AutoModelForSequenceClassification,
     TrainingArguments,
     Trainer,
     EarlyStoppingCallback,
 )
 
-# --- your prep utilities (imports tokenizer, dataset, collate, etc.) ---
+# --- your prep utilities (tokenizer, dataset, collate, etc.) ---
 import preplibrary as prep
 
 
@@ -52,19 +39,14 @@ def compute_metrics(eval_pred):
     labels = labels.astype(int)
     probs = torch.softmax(torch.tensor(logits), dim=1)[:, 1].numpy()
     preds = (probs >= 0.5).astype(int)
-
     out = {
         "accuracy": accuracy_score(labels, preds),
         "f1": f1_score(labels, preds, zero_division=0),
     }
-    try:
-        out["auroc"] = roc_auc_score(labels, probs)
-    except Exception:
-        out["auroc"] = float("nan")
-    try:
-        out["auprc"] = average_precision_score(labels, probs)
-    except Exception:
-        out["auprc"] = float("nan")
+    try: out["auroc"] = roc_auc_score(labels, probs)
+    except Exception: out["auroc"] = float("nan")
+    try: out["auprc"] = average_precision_score(labels, probs)
+    except Exception: out["auprc"] = float("nan")
     return out
 
 
@@ -72,16 +54,50 @@ def split_train_val(df: pd.DataFrame, val_frac: float, seed: int, chromosome_spl
     if chromosome_split and ("chrom" in df.columns):
         chroms = sorted(df["chrom"].dropna().unique().tolist())
         k = max(1, int(len(chroms) * val_frac))
-        val_chroms = set(chroms[-k:])  # simple deterministic split
+        val_chroms = set(chroms[-k:])
         df_train = df[~df["chrom"].isin(val_chroms)].reset_index(drop=True)
-        df_val = df[df["chrom"].isin(val_chroms)].reset_index(drop=True)
+        df_val   = df[df["chrom"].isin(val_chroms)].reset_index(drop=True)
     else:
         df = df.sample(frac=1.0, random_state=seed).reset_index(drop=True)
         n_val = max(1, int(len(df) * val_frac))
-        df_val = df.iloc[:n_val].reset_index(drop=True)
+        df_val   = df.iloc[:n_val].reset_index(drop=True)
         df_train = df.iloc[n_val:].reset_index(drop=True)
-
     return df_train, df_val
+
+
+# ---- version-agnostic TrainingArguments builder ----
+def make_training_args(args, eval_steps):
+    params = set(signature(TrainingArguments.__init__).parameters)
+
+    kw = dict(
+        output_dir=args.out_dir,
+        learning_rate=args.lr,
+        per_device_train_batch_size=args.batch_train,
+        per_device_eval_batch_size=args.batch_eval,
+        num_train_epochs=args.epochs,
+        weight_decay=0.01,
+        report_to="none",
+        fp16=torch.cuda.is_available(),
+    )
+    # prefer staying on CPU if no CUDA
+    if "no_cuda" in params and not torch.cuda.is_available():
+        kw["no_cuda"] = True
+
+    # add only if supported by the installed transformers version
+    if "evaluation_strategy" in params: kw["evaluation_strategy"] = "steps"
+    if "eval_strategy" in params:       kw["eval_strategy"] = "steps"  # very old versions
+
+    if "eval_steps" in params:              kw["eval_steps"] = eval_steps
+    if "logging_steps" in params:           kw["logging_steps"] = max(10, eval_steps // 5)
+    if "save_steps" in params:              kw["save_steps"] = eval_steps
+    if "save_total_limit" in params:        kw["save_total_limit"] = 2
+    if "load_best_model_at_end" in params:  kw["load_best_model_at_end"] = True
+    if "metric_for_best_model" in params:   kw["metric_for_best_model"] = "auprc"
+    if "greater_is_better" in params:       kw["greater_is_better"] = True
+    if "dataloader_num_workers" in params:  kw["dataloader_num_workers"] = 2
+
+    return TrainingArguments(**kw)
+# ---------------------------------------------------
 
 
 def main():
@@ -97,7 +113,7 @@ def main():
     ap.add_argument("--val-frac", type=float, default=0.1)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--chromosome-split", type=lambda s: s.lower() in {"1","true","yes","y"}, default=False,
-                   help="If true and 'chrom' column exists, hold out whole chromosomes for validation")
+                    help="If true and 'chrom' column exists, hold out whole chromosomes for validation")
     args = ap.parse_args()
 
     os.makedirs(args.out_dir, exist_ok=True)
@@ -105,7 +121,6 @@ def main():
 
     # 1) Load CSV
     usecols = ["sequence", "label"]
-    # include chrom if present to optionally enable chromosome-wise split
     try:
         df_tmp = pd.read_csv(args.csv, nrows=1)
         if "chrom" in df_tmp.columns:
@@ -120,27 +135,39 @@ def main():
     # 2) Train/val split
     df_train, df_val = split_train_val(df, args.val_frac, args.seed, args.chromosome_split)
 
-    # 3) Tokenizer & model
-    # tokenizer is already constructed in preplibrary as `tok`
+    # 3) Tokenizer & model (disable FlashAttention on CPU; set labels on config)
     tokenizer = prep.tok
     model_name = "zhihan1996/DNABERT-2-117M"
+
+    config = AutoConfig.from_pretrained(model_name, trust_remote_code=True)
+    config.num_labels = 2
+    config.id2label = {0: "non_PAS", 1: "PAS"}
+    config.label2id = {"non_PAS": 0, "PAS": 1}
+
+    if not torch.cuda.is_available():
+        # DNABERT-2 variants may use any of these flags; turn them off on CPU
+        for k in ("use_flash_attn", "flash_attn", "flash_attention"):
+            if hasattr(config, k):
+                setattr(config, k, False)
+        os.environ["DISABLE_FLASH_ATTN"] = "1"
+        os.environ["FLASH_ATTENTION_DISABLED"] = "1"
+        os.environ["USE_FLASH_ATTENTION"] = "0"
+
     model = AutoModelForSequenceClassification.from_pretrained(
         model_name,
-        num_labels=2,
-        id2label={0: "non_PAS", 1: "PAS"},
-        label2id={"non_PAS": 0, "PAS": 1},
+        config=config,            # pass adjusted config; no num_labels/label maps as kwargs
         trust_remote_code=True,
     )
 
-    # 4) Build datasets using your APADataset (one window per row; no sliding)
+    # 4) Datasets (one window per row; no sliding)
     train_ds = prep.APADataset(
         sequences=df_train["sequence"].tolist(),
         tokenizer=tokenizer,
         labels=df_train["label"].tolist(),
         centers=[None] * len(df_train),
         window_nt=args.window_nt,
-        stride=args.window_nt,      # stride==window => no sliding
-        max_length=args.max_length, # IMPORTANT: override your default 300 to avoid truncation
+        stride=args.window_nt,
+        max_length=args.max_length,
         k=6,
     )
     val_ds = prep.APADataset(
@@ -154,31 +181,10 @@ def main():
         k=6,
     )
 
-    # 5) TrainingArguments
-    # pick evaluation/logging cadence roughly per ~500 steps or each epoch if small
-    eval_steps = 500
-    if len(train_ds) // max(1, args.batch_train) < 500:
-        eval_steps = max(50, len(train_ds) // max(1, args.batch_train))
-
-    targs = TrainingArguments(
-        output_dir=args.out_dir,
-        learning_rate=args.lr,
-        per_device_train_batch_size=args.batch_train,
-        per_device_eval_batch_size=args.batch_eval,
-        num_train_epochs=args.epochs,
-        weight_decay=0.01,
-        evaluation_strategy="steps",
-        eval_steps=eval_steps,
-        logging_steps=max(10, eval_steps // 5),
-        save_steps=eval_steps,
-        save_total_limit=2,
-        load_best_model_at_end=True,
-        metric_for_best_model="auprc",
-        greater_is_better=True,
-        report_to="none",
-        fp16=torch.cuda.is_available(),
-        dataloader_num_workers=2,
-    )
+    # 5) TrainingArguments (robust to transformers version)
+    steps_per_epoch = max(1, len(train_ds) // max(1, args.batch_train))
+    eval_steps = max(50, steps_per_epoch)
+    targs = make_training_args(args, eval_steps)
 
     # 6) Trainer
     trainer = Trainer(
@@ -186,7 +192,7 @@ def main():
         args=targs,
         train_dataset=train_ds,
         eval_dataset=val_ds,
-        tokenizer=tokenizer,
+        tokenizer=tokenizer,  # OK; deprecation warning is harmless
         data_collator=prep.apa_collate,
         compute_metrics=compute_metrics,
         callbacks=[EarlyStoppingCallback(early_stopping_patience=3)],
