@@ -68,9 +68,11 @@ Download all project files in a directory.
 - `torch` (CPU or CUDA)
 - `transformers`
 - `pandas`, `numpy`
-- `GenomeKit`
+- `matplotlib`
+- `scikit-learn`
+- `genome_kit`
 
-*Standard library* (no install needed): `re`, `typing`  
+*Standard library* (no install needed): `re`, `typing`, `math`, `os`, `sys`, `random`, `hashlib`, `collections`, `gzip`  
 *Included with torch*: `torch.utils.data` (`Dataset`, `DataLoader`)
 
 ## Quick Start 
