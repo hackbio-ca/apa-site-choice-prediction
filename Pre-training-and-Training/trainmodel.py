@@ -310,7 +310,7 @@ def main():
     tokenizer.save_pretrained(final_dir)
     print(f"[OK] Saved model + tokenizer to: {final_dir}")
 
-    # Calls the visualization
+    # 9) Calls the visualization
     example_seq = df_val["sequence"].iloc[0]
     plot_self_attention(
         model_dir=final_dir,
