@@ -37,6 +37,7 @@ Tasks were completed, and the decided ml model was the transformer-based genome 
 
 INSERT EXPLANATION FOR CHOSEN MODEL HERE; INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY
 
+
 **Phase 2: Preparation for Model Training** 
 
 `prep_rna_for_model.ipynb` was written with functions to prep raw RNA sequences for the chosen ml model. 
@@ -45,9 +46,12 @@ INSERT WHAT BORIS DID HERE
 
 INSERT WHAT AKSHITA DID HERE 
 
+
 **Phase 3: Model Training** 
 
+
 **Phase 4: SOMETHING AFTER MODEL TRAINING HERE** 
+
 
 **Phase 5: Wrapping Up** 
 
