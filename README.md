@@ -62,14 +62,12 @@ We compiled these sources into one standardized `.csv` using **genome_kit**, whi
 
 **Phase 3: Model Training** 
 
-_INSERT WHAT BORIS DID HERE_ 
-
-However, the model was taking too long to run when we fed it our dataset and we were running out of time to complete the hackathon. We made the decision to cut our data in half in a last ditch effort to finish the project on time.  
+Trained the model on our dataset using amazon web service servers. However, the model was taking too long to run when we fed it our dataset and we were running out of time to complete the hackathon. We made the decision to cut our data in half in a last ditch effort to finish the project on time.  
 
 
 **Phase 4: Evaluation and Interpreting** 
 
-Used built in functions from `transformers` to evaluate model accuracy. Curated a smaller set of data for demoing the tuned model and generating visualizations using BertViz. 
+Used built in functions from `transformers` and `scikit-learn` to evaluate model accuracy. Curated a smaller set of data for demoing the tuned model and generating visualizations using BertViz. 
 
 
 ## Installation and Dependencies 
