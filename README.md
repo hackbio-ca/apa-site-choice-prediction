@@ -79,6 +79,7 @@ Follow apa_site_choice_prediction_quickstart.md within this repository.
 - Python **3.10–3.12**
 - `torch` (CPU or CUDA)
 - `transformers`
+- `seaborn`
 - `pandas`, `numpy`
 - `matplotlib`
 - `scikit-learn`
