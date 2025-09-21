@@ -69,7 +69,7 @@ However, the model was taking too long to run when we fed it our dataset and we 
 
 **Phase 4: Evaluation and Interpreting** 
 
-_INSERT WHAT AKSHITA DID HERE_ 
+Using BertViz, we generated Attention-Matrix heatmaps to show which bases are focused on during prediction allowing us to validate our model. 
 
 
 ## Installation and Dependencies 
