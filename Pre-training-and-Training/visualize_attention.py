@@ -3,15 +3,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from transformers import AutoModel, AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
-model = AutoModel.from_pretrained(model_dir, output_attentions=True, trust_remote_code=True)
-
 def plot_self_attention(model_dir, sequence, layer=-1, average_heads=True, save_path=None):
     """
     Generate and plot a self-attention heatmap for a given DNA sequence.
     """
-    tokenizer = AutoTokenizer.from_pretrained(model_dir)
-    model = AutoModel.from_pretrained(model_dir, output_attentions=True)
+   tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
+    model = AutoModel.from_pretrained(model_dir, output_attentions=True, trust_remote_code=True)
     model.eval()
 
     inputs = tokenizer(sequence, return_tensors="pt", truncation=True, max_length=256)
