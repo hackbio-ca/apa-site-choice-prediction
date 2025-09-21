@@ -37,7 +37,7 @@ Tasks were completed, and the decided ml model was the transformer-based genome 
 
 Why a transformer: Self-attention captures long-range motif interactions (AAUAAA, UGUA, U/G-rich) across tens–hundreds of bases; pretrained genomic representations and parallelism make training fast and interpretable for k-mer attributions.
 
-Why DNABERT-2-117M: Genome-native k-mer tokenizer, ~117M params (hackathon-friendly), easy loading (`AutoTokenizer`/`AutoModelForSequenceClassification`), strong prior for motif-based classification, and token-level attributions map cleanly to biological k-mers.
+Why `DNABERT-2-117M`: Genome-native k-mer tokenizer, ~117M params (hackathon-friendly), easy loading (`AutoTokenizer`/`AutoModelForSequenceClassification`), strong prior for motif-based classification, and token-level attributions map cleanly to biological k-mers.
 
 INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY
 
