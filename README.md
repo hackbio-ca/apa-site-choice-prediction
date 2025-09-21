@@ -53,13 +53,12 @@ _INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY_
 
 _INSERT WHAT BORIS DID HERE_ 
 
+However, the model was taking too long to run when we fed it our dataset and we were running out of time to complete the hackathon. We made the decision to cut our data in half in a last ditch effort to finish the project on time.  
+
 
 **Phase 4: Evaluation and Interpreting** 
 
 _INSERT WHAT AKSHITA DID HERE_ 
-
-
-**Phase 5: Wrapping Up** 
 
 
 ## Installation and Dependencies 
