@@ -6,13 +6,63 @@ Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
 ## Abstract
 
-Messenger RNA (mRNA) molecules are made from DNA and serve as the instructions for building proteins. At the end of most mRNAs is a poly(A) tail: a stretch of adenines that protects the RNA and helps it function. Genes can use different polyadenylation sites to produce mRNAs with different tail lengths, a process called Alternative Polyadenylation (APA). APA changes can alter RNA stability, localization, and translation, and are often linked to diseases such as cancer.
-
-Our project aims to build an interpretable machine learning model to predict which polyadenylation site a gene will use, based on features derived from the RNA sequence. By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice.
+Our project aims to train the zhihan1996/DNABERT-2-117M machine learning model to predict which polyadenylation site a gene will use, based on features derived from the RNA sequence. By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice.
 
 We will train and test our model using publicly available datasets from PolyASite 2.0, a curated atlas of experimentally validated polyadenylation sites, and GENCODE, which provides high-quality gene annotations. These datasets include APA information for human and mouse, covering multiple tissues and experimental conditions. The output will include both predictions and explanations (via SHAP plots) showing which features were most important.
 
 This tool could help researchers understand APA regulation and potentially detect disease- associated changes in RNA processing.
+
+## Background 
+
+Messenger RNA (mRNA) molecules are made from DNA and serve as the instructions for building proteins. At the end of most mRNAs is a poly(A) tail: a stretch of adenines that protects the RNA and helps it function. Genes can use different polyadenylation sites to produce mRNAs with different tail lengths, a process called Alternative Polyadenylation (APA). APA changes can alter RNA stability, localization, and translation, and are often linked to diseases such as cancer.
+
+## Workflow 
+
+**Phase 1: Planning and Research** 
+
+Tasks were delegated to members as follows: 
+1. Raw data processing 
+    - Figure out how to compile data from PolyASite 2.0, PolyA_DB, and GENCODE into one .csv file
+    - Determine how to format the .csv file depending on what columns of data are important and relevant  
+2. Neural network research 
+    - Research CNN vs. transformers and decide what would be more suitable for our project
+    - Choose a machine learning model to feed our data into 
+    - Research said model, how it works, what it does, and the necessary format for the data we feed it 
+3. Presentation and visuals 
+    - Create presentation template 
+    - Learn how to plot cool graphs (ex. ike heat maps)
+    - Create visualizations of chosen machine learning model 
+
+Tasks were completed, and the decided ml model was the transformer-based genome foundation model `zhihan1996/DNABERT-2-117M`. 
+
+INSERT EXPLANATION FOR CHOSEN MODEL HERE; INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY
+
+**Phase 2: Preparation for Model Training** 
+`prep_rna_for_model.ipynb` was written with functions to prep raw RNA sequences for the chosen ml model. 
+
+INSERT WHAT BORIS DID HERE 
+
+INSERT WHAT AKSHITA DID HERE 
+
+**Phase 3: Model Training** 
+
+**Phase 4: SOMETHING AFTER MODEL TRAINING HERE** 
+
+**Phase 5: Wrapping Up** 
+
+
+## Installation and Dependencies 
+Download all project files in a directory.
+
+**Required Packages**
+- Python **3.10–3.12**
+- `torch` (CPU or CUDA)
+- `transformers`
+- `pandas`, `numpy`
+
+*Standard library* (no install needed): `re`, `typing`  
+*Included with torch*: `torch.utils.data` (`Dataset`, `DataLoader`)
+
 
 ## License
 
