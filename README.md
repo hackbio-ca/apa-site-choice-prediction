@@ -8,7 +8,7 @@ Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
 Our project aims to train the [`DNABERT-2-117M`](https://huggingface.co/zhihan1996/DNABERT-2-117M) machine learning model to predict where and which polyadenylation site a gene will use, based on features derived from the RNA sequence. By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice.
 
-We will train and test the model using publicly available datasets from **PolyASite 2.0** and **PolyA_DB**, which provide experimentally validated catalogs of polyadenylation sites, and **GENCODE**, which supplies comprehensive gene annotations. Together, these resources give us a high-confidence, genome-wide reference of polyadenylation sites and their transcript contexts. _The model’s output will include both predictions and explanations showing which sequence features were most important for site choice._ ** check what outputs are included, and modify based off of that (placeholder)
+We will train and test the model using publicly available datasets from **PolyASite 2.0** and **PolyA_DB**, which provide experimentally validated catalogs of polyadenylation sites, and **GENCODE**, which supplies comprehensive gene annotations. Together, these resources give us a high-confidence, genome-wide reference of polyadenylation sites and their transcript contexts. The model’s output will include both predictions and explanations showing which sequence features were most important for site choice.
 
 This tool could help researchers understand APA regulation and potentially detect disease-associated changes in RNA processing.
 
