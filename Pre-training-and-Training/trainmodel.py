@@ -28,6 +28,10 @@ from transformers import (
 # Your prep utilities (tokenizer, dataset, collate)
 import preplibrary as prep
 
+# imports visualizer function
+from visualize_attention import plot_self_attention
+
+
 # ---- GPU math knobs: TF32 can give ~10–20% extra throughput on Ampere+ ----
 torch.backends.cuda.matmul.allow_tf32 = True
 torch.backends.cudnn.allow_tf32 = True
@@ -305,6 +309,16 @@ def main():
     trainer.save_model(final_dir)
     tokenizer.save_pretrained(final_dir)
     print(f"[OK] Saved model + tokenizer to: {final_dir}")
+
+    # Calls the visualization
+    example_seq = df_val["sequence"].iloc[0]
+    plot_self_attention(
+        model_dir=final_dir,
+        sequence=example_seq,
+        layer=-1,
+        average_heads=True,
+        save_path=os.path.join(final_dir, "attention_heatmap.png")
+    )
 
 
 if __name__ == "__main__":
