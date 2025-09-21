@@ -69,7 +69,7 @@ However, the model was taking too long to run when we fed it our dataset and we 
 
 **Phase 4: Evaluation and Interpreting** 
 
-Using BertViz, we generated Attention-Matrix heatmaps to show which bases are focused on during prediction allowing us to validate our model. 
+Used built in functions from `transformers` to evaluate model accuracy. Curated a smaller set of data for demoing the tuned model and generating visualizations using BertViz. 
 
 
 ## Installation and Dependencies 
