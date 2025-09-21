@@ -41,7 +41,18 @@ Why a transformer: Self-attention captures long-range motif interactions (AAUAAA
 
 Why `DNABERT-2-117M`: Genome-native k-mer tokenizer, ~117M params (hackathon-friendly), easy loading (`AutoTokenizer`/`AutoModelForSequenceClassification`), strong prior for motif-based classification, and token-level attributions map cleanly to biological k-mers.
 
-_INSERT WHY WE CHOSE THESE DATABASES, WHAT COLUMNS OF DATA WE KEPT AND WHY, HOW WE COMPILED THE DATA, NAMEDROP GENOMEKIT HERE_
+We chose **PolyASite 2.0** and **PolyA_DB** because they provide experimentally validated catalogs of human and mouse polyadenylation sites across multiple tissues and experimental conditions. These are the gold-standard references for APA studies, ensuring our model learns from real, biologically relevant examples rather than predictions.  
+
+**GENCODE** was used for high-quality gene annotations (including transcript boundaries, strand orientation, and exon/intron structures). This ensured that each polyadenylation site could be contextualized relative to its host gene and transcript.
+
+From these datasets, we kept the following columns because they are most relevant for predicting APA site choice:  
+- **chromosome, strand, start/end position** → defines site location  
+- **gene_id / transcript_id** → links the site to its gene context  
+- **PAS motif (sequence window)** → captures canonical and non-canonical motifs  
+- **distance to stop codon / transcript end** → reflects positional bias in APA usage  
+
+We compiled these sources into one standardized `.csv` using **genome_kit**, which allowed us to lift coordinates to hg38, extract surrounding RNA sequence windows, and harmonize the annotation fields. The result is a unified dataset ready for sequence-based model input.
+
 
 
 **Phase 2: Preparation for Model Training** 
