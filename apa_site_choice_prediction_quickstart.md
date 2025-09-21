@@ -191,8 +191,3 @@ python eval.py --model output/models/dnabert2_baseline --test output/apasites_wi
 - ✅ Outputs go under `output/`
 - ✅ Deterministic sampling with `--seed`
 - ✅ CI smoke test uses the one‑liner above with a tiny subset
-
----
-
-**You’re set.** If your layout already conforms to the folders above, start at **Step 4** and you’ll have a training run in minutes.
-
