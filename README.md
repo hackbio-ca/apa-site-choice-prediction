@@ -22,8 +22,8 @@ Messenger RNA (mRNA) molecules are made from DNA and serve as the instructions f
 
 Tasks were delegated to members as follows: 
 1. Raw data processing 
-    - Figure out how to compile data from PolyASite 2.0, PolyA_DB, and GENCODE into one .csv file
-    - Determine how to format the .csv file depending on what columns of data are important and relevant  
+    - Figure out how to compile data from PolyASite 2.0, PolyA_DB, and GENCODE into one `.csv` file
+    - Determine how to format the `.csv` file depending on what columns of data are important and relevant  
 2. Neural network research 
     - Research CNN vs. transformers and decide what would be more suitable for our project
     - Choose a machine learning model to feed our data into 
@@ -68,9 +68,11 @@ Download all project files in a directory.
 - `torch` (CPU or CUDA)
 - `transformers`
 - `pandas`, `numpy`
-- `GenomeKit`
+- `matplotlib`
+- `scikit-learn`
+- `genome_kit`
 
-*Standard library* (no install needed): `re`, `typing`  
+*Standard library* (no install needed): `re`, `typing`, `math`, `os`, `sys`, `random`, `hashlib`, `collections`, `gzip`  
 *Included with torch*: `torch.utils.data` (`Dataset`, `DataLoader`)
 
 ## Quick Start 
