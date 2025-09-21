@@ -6,9 +6,9 @@ Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
 ## Abstract
 
-Our project aims to train the [`DNABERT-2-117M`](https://huggingface.co/zhihan1996/DNABERT-2-117M) machine learning model to predict where and which polyadenylation site a gene will use, based on features derived from the RNA sequence. By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice.
+Our project aims to train the [`DNABERT-2-117M`](https://huggingface.co/zhihan1996/DNABERT-2-117M) machine learning model to predict where and which polyadenylation site a gene will use, based on features derived from the RNA sequence (Qin et al., 2020). By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice (Tian et al., 2025).
 
-We will train and test the model using publicly available datasets from **PolyASite 2.0** and **PolyA_DB**, which provide experimentally validated catalogs of polyadenylation sites, and **GENCODE**, which supplies comprehensive gene annotations. Together, these resources give us a high-confidence, genome-wide reference of polyadenylation sites and their transcript contexts. The model’s output will include predictions and further visualizing aids are included.
+We will train and test the model using publicly available datasets from **PolyASite 2.0** and **PolyA_DB**, which provide experimentally validated catalogs of polyadenylation sites, and **GENCODE**, which supplies comprehensive gene annotations. Together, these resources give us a high-confidence, genome-wide reference of polyadenylation sites and their transcript contexts (Zhang et al., 2021). The model’s output will include predictions and further visualizing aids are included.
 
 This tool could help researchers understand APA regulation and potentially detect disease-associated changes in RNA processing.
 
@@ -16,7 +16,7 @@ Submitted as part of the [Toronto Bioinformatics Hackathon 2025](https://hackbio
 
 ## Background 
 
-Messenger RNA (mRNA) molecules are made from DNA and serve as the instructions for building proteins. At the end of most mRNAs is a poly(A) tail: a stretch of adenosinese that protects the RNA and helps it function. Genes can use different polyadenylation sites to produce mRNAs with different tail lengths, a process called Alternative Polyadenylation (APA). APA changes can alter RNA stability, localization, and translation, and are often linked to diseases such as cancer.
+Messenger RNA (mRNA) molecules are made from DNA and serve as the instructions for building proteins. At the end of most mRNAs is a poly(A) tail: a stretch of adenosinese that protects the RNA and helps it function. Genes can use different polyadenylation sites to produce mRNAs with different tail lengths, a process called Alternative Polyadenylation (APA) (Gallicchio et al., 2023). APA changes can alter RNA stability, localization, and translation, and are often linked to diseases such as cancer(Zhang et al., 2021).
 
 ## Workflow 
 
@@ -85,6 +85,14 @@ Follow repo_quickstart_ultra_short.md within this repository.
 
 *Standard library* (no install needed): `re`, `typing`, `math`, `os`, `sys`, `random`, `hashlib`, `collections`, `gzip`  
 *Included with torch*: `torch.utils.data` (`Dataset`, `DataLoader`)
+
+## References 
+
+Gallicchio, L., Olivares, G. H., Berry, C. W., & Fuller, M. T. (2023, January). Regulation and function of alternative polyadenylation in development and differentiation. RNA biology. https://pmc.ncbi.nlm.nih.gov/articles/PMC10730144/ 
+Passmore, L. A., & Coller, J. (2022, February). Roles of mrna poly(a) tails in regulation of eukaryotic gene expression. Nature reviews. Molecular cell biology. https://pmc.ncbi.nlm.nih.gov/articles/PMC7614307/ 
+Qin, H., Ni, H., Liu, Y., Yuan, Y., Xi, T., Li, X., & Zheng, L. (2020, July 11). RNA-binding proteins in tumor progression - journal of hematology & oncology. BioMed Central. https://jhoonline.biomedcentral.com/articles/10.1186/s13045-020-00927-w 
+Tian, Q., Zou, Q., & Jia, L. (2025, May 14). Benchmarking of methods that identify alternative polyadenylation events in single-/multiple-polyadenylation site genes. NAR genomics and bioinformatics. https://pmc.ncbi.nlm.nih.gov/articles/PMC12076406/ 
+Zhang, Y., Liu, L., Qiu, Q., Zhou, Q., Ding, J., Lu, Y., & Liu, P. (2021, February 1). Alternative polyadenylation: Methods, mechanism, function, and role in cancer - Journal of Experimental & Clinical Cancer Research. BioMed Central. https://jeccr.biomedcentral.com/articles/10.1186/s13046-021-01852-7 
 
 ## License
 
