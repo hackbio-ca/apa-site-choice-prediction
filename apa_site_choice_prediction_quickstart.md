@@ -1,9 +1,5 @@
 # APA Site Choice Prediction — Quickstart
 
-A minimal, no‑nonsense guide to get the project running from a fresh clone, end‑to‑end. Copy/paste the commands as‑is and adjust paths only if your layout differs.
-
----
-
 ## 1) Project overview
 Predict alternative polyadenylation (APA) site usage from sequence. The pipeline builds labeled examples from curated PAS catalogs, converts them into DNABERT‑ready format, and fine‑tunes a transformer to classify sites.
 
