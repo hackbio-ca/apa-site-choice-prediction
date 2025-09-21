@@ -10,7 +10,7 @@ os.makedirs(OUTD, exist_ok=True)
 
 IN1 = os.path.join(OUTD, "polyasite_annotated_hg38.csv")
 IN2 = os.path.join(OUTD, "polyadb_annotated_hg38.csv")
-OUT = os.path.join(OUTD, "apasites_for_dnabert.csv")
+OUT = os.path.join(OUTD, "apasites_positives.csv")
 
 def make_id(row) -> str:
     s = f"{row.chrom}:{row.pos}:{row.strand}:{row.get('gene_name','')}"
