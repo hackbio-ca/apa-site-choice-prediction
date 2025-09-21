@@ -73,7 +73,7 @@ _INSERT WHAT AKSHITA DID HERE_
 
 
 ## Installation and Dependencies 
-Download all project files in a directory.
+Follow QuickStart.md within this repository.
 
 **Required Packages**
 - Python **3.10–3.12**
@@ -86,9 +86,6 @@ Download all project files in a directory.
 
 *Standard library* (no install needed): `re`, `typing`, `math`, `os`, `sys`, `random`, `hashlib`, `collections`, `gzip`  
 *Included with torch*: `torch.utils.data` (`Dataset`, `DataLoader`)
-
-## Quick Start 
-
 
 ## License
 
