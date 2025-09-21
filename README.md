@@ -8,7 +8,7 @@ Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
 Our project aims to train the `zhihan1996/DNABERT-2-117M` machine learning model to predict where and which polyadenylation site a gene will use, based on features derived from the RNA sequence. By identifying sequence motifs (such as AAUAAA variants), nucleotide composition, and position within the transcript, the model will highlight key factors influencing site choice.
 
-We will train and test our model using publicly available datasets from PolyASite 2.0 and PolyADB, curated atlases of experimentally validated polyadenylation sites, and GENCODE, which provides high-quality gene annotations. These datasets include APA information for human and mouse, covering multiple tissues and experimental conditions. The output will include both predictions and explanations (via SHAP plots) showing which features were most important.
+We will train and test the model using publicly available datasets from PolyASite 2.0 and PolyADB, curated atlases of experimentally validated polyadenylation sites, and GENCODE, which provides high-quality gene annotations. These datasets include APA information for human and mouse, covering multiple tissues and experimental conditions. The output will include both predictions and explanations (via SHAP plots) showing which features were most important.
 
 This tool could help researchers understand APA regulation and potentially detect disease-associated changes in RNA processing.
 
@@ -41,12 +41,12 @@ Why a transformer: Self-attention captures long-range motif interactions (AAUAAA
 
 Why `DNABERT-2-117M`: Genome-native k-mer tokenizer, ~117M params (hackathon-friendly), easy loading (`AutoTokenizer`/`AutoModelForSequenceClassification`), strong prior for motif-based classification, and token-level attributions map cleanly to biological k-mers.
 
-_INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY_
+_INSERT WHY WE CHOSE THESE DATABASES, WHAT COLUMNS OF DATA WE KEPT AND WHY, HOW WE COMPILED THE DATA, NAMEDROP GENOMEKIT HERE_
 
 
 **Phase 2: Preparation for Model Training** 
 
-`prep_rna_for_model.ipynb` was written with functions to prep raw RNA sequences for the chosen ml model. 
+`prep_rna_for_model.ipynb` was written with functions to prep raw RNA sequences for the chosen ml model.
 
 
 **Phase 3: Model Training** 
