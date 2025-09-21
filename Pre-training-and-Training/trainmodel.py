@@ -102,7 +102,7 @@ def make_training_args(args, eval_steps):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--csv", default="test.csv", help="Training CSV with columns: sequence,label[,chrom]")
+    ap.add_argument("--csv", default="apasites_dataset.csv", help="Training CSV with columns: sequence,label[,chrom]")
     ap.add_argument("--out-dir", default="./dnabert2_apa", help="Directory to store checkpoints and final model")
     ap.add_argument("--epochs", type=int, default=3)
     ap.add_argument("--lr", type=float, default=2e-5)
