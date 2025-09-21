@@ -1,6 +1,6 @@
-# 🚀 APA Site Choice Prediction — Ultra‑Short Quickstart
+# APA Site Choice Prediction — Quickstart
 
-From a fresh clone, this sets up folders, downloads reference/annotation files, and runs the CSV pipeline with default scripts in `CSV_Generation/`.
+From a new clone, this sets up folders, downloads reference/annotation files, and runs the CSV pipeline with default scripts in `CSV_Generation/`.
 
 ```bash
 # 1) Get the repo
@@ -108,5 +108,5 @@ echo "- polyadb   : CSV_Generation/data/polyadb"
 echo "- output    : CSV_Generation/output"
 ```
 
-That’s it. Set `POLYASITE_URLS` / `POLYADB_URLS` if you want the script to fetch inputs for you, otherwise just drop your files into the created folders and run step 4 above.
+Set `POLYASITE_URLS` / `POLYADB_URLS` if you want the script to fetch inputs for you, otherwise just drop your files into the created folders and run step 4 above.
 
