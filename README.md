@@ -67,7 +67,7 @@ Trained the model on our dataset using amazon web service servers. However, the 
 
 **Phase 4: Evaluation and Interpreting** 
 
-Used built in functions from `transformers` and `scikit-learn` to evaluate model accuracy. Curated a smaller set of data for demoing the tuned model and generating visualizations using BertViz. 
+Used built-in functions from `transformers` and `scikit-learn` to evaluate model accuracy. Compiled raw BED/GTF files into one CSV (including data points like ±50-nt windows, AAUAAA/variants, GC%) for model checks. Curated a smaller set of data for demoing the tuned model and generating visualizations using BertViz. 
 
 
 ## Installation and Dependencies 
