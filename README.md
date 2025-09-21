@@ -35,7 +35,11 @@ Tasks were delegated to members as follows:
 
 Tasks were completed, and the decided ml model was the transformer-based genome foundation model `zhihan1996/DNABERT-2-117M`. 
 
-INSERT EXPLANATION FOR CHOSEN MODEL HERE; INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY
+Why a transformer: Self-attention captures long-range motif interactions (AAUAAA, UGUA, U/G-rich) across tens–hundreds of bases; pretrained genomic representations and parallelism make training fast and interpretable for k-mer attributions.
+
+Why DNABERT-2-117M: Genome-native k-mer tokenizer, ~117M params (hackathon-friendly), easy loading (`AutoTokenizer`/`AutoModelForSequenceClassification`), strong prior for motif-based classification, and token-level attributions map cleanly to biological k-mers.
+
+INSERT WHAT COLUMNS OF DATA WE KEPT HERE AND WHY
 
 
 **Phase 2: Preparation for Model Training** 
@@ -50,7 +54,7 @@ INSERT WHAT AKSHITA DID HERE
 **Phase 3: Model Training** 
 
 
-**Phase 4: SOMETHING AFTER MODEL TRAINING HERE** 
+**Phase 4: Evaluation and Interpreting** 
 
 
 **Phase 5: Wrapping Up** 
@@ -68,6 +72,8 @@ Download all project files in a directory.
 
 *Standard library* (no install needed): `re`, `typing`  
 *Included with torch*: `torch.utils.data` (`Dataset`, `DataLoader`)
+
+## Quick Start 
 
 
 ## License
