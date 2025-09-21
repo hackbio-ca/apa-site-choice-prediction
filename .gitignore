@@ -1,5 +1,2 @@
 *.csv
-!combined_sample.csv
-!positives_sample.csv
-!negatives_sample.csv
-!other_half_full.csv
+!/CSV_Generation/Model_Test_Samples/*.csv
