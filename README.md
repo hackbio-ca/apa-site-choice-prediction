@@ -1,6 +1,6 @@
 # apa-site-choice-prediction
 
-Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
+🥈 Winner of the 2025 Runner Up Award: Predicting Alternative Polyadenylation Site Choice from mRNA Sequences
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
