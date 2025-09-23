@@ -57,17 +57,21 @@ We compiled these sources into one standardized `.csv` using **genome_kit**, whi
 
 **Phase 2: Preparation for Model Training** 
 
-`prep_rna_for_model.ipynb` was written with functions to prep raw RNA sequences for the chosen ml model.
+`prep_rna_for_model.ipynb` was written: A data pre-processing pipeline built to format raw RNA sequences for the chosen ml model, DNABERT-2-117M. Pipeline was scaled up to work on batches of data.
 
 
 **Phase 3: Model Training** 
 
-Trained the model on our dataset using amazon web service servers. However, the model was taking too long to run when we fed it our dataset and we were running out of time to complete the hackathon. We made the decision to cut our data in half in a last ditch effort to finish the project on time.  
+Trained the model on our dataset using Google Colab servers. Set up and ran the end-to-end transformer training and evaluation pipeline for `DNABERT-2-117M` in `PyTorch` and `Hugging Face` on A100 GPUs. Implemented batching, mixed-precision training, checkpointing, Git LFS for large artifacts, and run management. Trained on ~800,000 labeled sequence windows from PolyASite 2.0, PolyA_DB, and GENCODE.
 
 
 **Phase 4: Evaluation and Interpreting** 
 
-Used built-in functions from `transformers` and `scikit-learn` to evaluate model accuracy. Compiled raw BED/GTF files into one CSV (including data points like ±50-nt windows, AAUAAA/variants, GC%) for model checks. Curated a smaller set of data for demoing the tuned model and generating visualizations using BertViz. 
+Used built-in functions from `transformers` and `scikit-learn` to evaluate model accuracy. Compiled raw BED/GTF files into one CSV (including data points like ±50-nt windows, AAUAAA/variants, GC%) for model checks. Curated a smaller set of data for demoing the tuned model and generating visualizations using `seaborn`. 
+
+
+## Results and Metrics 
+86% polyA site prediction accuracy. AUROC 0.93, AUPRC 0.94, F1 0.86.
 
 
 ## Installation and Dependencies 
